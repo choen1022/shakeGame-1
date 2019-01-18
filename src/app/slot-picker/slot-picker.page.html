@@ -9,13 +9,13 @@
     {{team}}
   </div>
   <div>
-    slot1: {{slots.slot1}}
+    slot1: <button *ngIf="!slots.slot1" (click)="joinGame(1)">Join</button>{{slots.slot1}}
   </div>
   <div>
-    slot2: {{slots.slot2}}
+    slot2: <button *ngIf="!slots.slot2" (click)="joinGame(2)">Join</button>{{slots.slot2}}
   </div>
   <div>
-    slot3: {{slots.slot3}}
+    slot3: <button *ngIf="!slots.slot3" (click)="joinGame(3)">Join</button>{{slots.slot3}}
   </div>
 
 </ion-content>
