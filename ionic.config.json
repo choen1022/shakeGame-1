@@ -1,5 +1,7 @@
 {
   "name": "shakeGame",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

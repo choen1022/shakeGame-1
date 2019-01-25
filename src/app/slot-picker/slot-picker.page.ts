@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
@@ -14,6 +14,7 @@ export class SlotPickerPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private gameService: GameService,
+    private router: Router,
     private db: AngularFireDatabase
   ) { }
 
@@ -32,6 +33,7 @@ export class SlotPickerPage implements OnInit {
           this.gameService.team = this.team
           this.gameService.slot = num
           console.log('Game Begin!')
+          this.router.navigate(['/game-play'])
         }
       })
   }
