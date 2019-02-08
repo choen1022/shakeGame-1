@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { DeviceMotion } from '@ionic-native/device-motion/ngx';
+import { GameService } from '../game.service';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'app-game-play',
@@ -11,22 +13,26 @@ export class GamePlayPage implements OnInit {
 
   count = 0;
   subscription: any
+  playing = false
+  backgroundHighlight = false
 
   constructor(
-    private platform : Platform,
-    private deviceMotion: DeviceMotion
-  ){
-    /*platform.ready().then(() => {
-      
-    })*/
-  }
+    private deviceMotion: DeviceMotion,
+    private db: AngularFireDatabase
+  ){}
 
   ngOnInit(){
-
+    this.db.object(`rooms/default/_state`)
+      .valueChanges().subscribe((_state : any) => {
+        this.playing = _state.play
+      })
   }
 
   handleShake(){
-    this.count++;
+    this.backgroundHighlight = !this.backgroundHighlight
+    if(this.playing){
+      this.count++;
+    }
   }
 
   ionViewWillEnter(){

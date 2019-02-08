@@ -4,6 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding [class.blueBackground]="backgroundHighlight">
 {{count}}
+<button (click)="handleShake()">Shake</button>
 </ion-content>

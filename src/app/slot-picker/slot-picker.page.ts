@@ -27,15 +27,10 @@ export class SlotPickerPage implements OnInit {
   joinGame(num){
     this.db.object(`rooms/default/${this.team == 1 ? 'blue' : 'red'}/slots/slot${num}`)
       .set(this.gameService.uuid);
-    this.db.object(`rooms/default/_state`)
-      .valueChanges().subscribe((_state : any) => {
-        if(_state.play){
-          this.gameService.team = this.team
-          this.gameService.slot = num
-          console.log('Game Begin!')
-          this.router.navigate(['/game-play'])
-        }
-      })
+    
+    this.gameService.team = this.team
+    this.gameService.slot = num
+    this.router.navigate(['/game-play'])    
   }
 
 }
